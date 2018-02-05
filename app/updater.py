@@ -54,7 +54,7 @@ class Updater(QtCore.QThread):
                 # This triggers Network Info widget update that we always want
                 blockchain_info = sync.getblockchaininfo()
                 # The node is downloading blocks if it has more headers than blocks
-                blockchain_downloading = blockchain_info['blocks'] != blockchain_info['headers']
+                blockchain_downloading = blockchain_info['blocks'] != blockchain_info['headers'] or blockchain_info['reindex']
                 node_block_hash = blockchain_info['bestblockhash']
             except Exception as e:
                 log.exception('cannot get bestblock via rpc: %s' % e)
